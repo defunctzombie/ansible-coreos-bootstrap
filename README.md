@@ -5,7 +5,7 @@ In order to effectively run ansible, the target machine needs to have a python i
 # install
 
 ```
-ansible-galaxy -i coreos-bootstrap
+ansible-galaxy -i defunctzombie.coreos-bootstrap
 ```
 
 # configure your project
@@ -27,7 +27,7 @@ Now you can simply add the following to your playbook file and include it in you
 - hosts: all
   gather_facts: False
   roles:
-    - coreos-bootstrap
+    - defunctzombie.coreos-bootstrap
 ```
 
 # License
