@@ -6,3 +6,5 @@ galaxy_info:
   description: "bootstrap coreos hosts to run ansible"
   license: "MIT"
   min_ansible_version: 1.4
+  categories:
+    - system
