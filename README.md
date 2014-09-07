@@ -5,7 +5,7 @@ In order to effectively run ansible, the target machine needs to have a python i
 # install
 
 ```
-ansible-galaxy -i defunctzombie.coreos-bootstrap
+ansible-galaxy install defunctzombie.coreos-bootstrap
 ```
 
 # configure your project
