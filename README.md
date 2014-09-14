@@ -8,23 +8,26 @@ In order to effectively run ansible, the target machine needs to have a python i
 ansible-galaxy install defunctzombie.coreos-bootstrap
 ```
 
-# configure your project
+# Configure your project
 
-Unlike a typical role, you need to configure ansible to use an alternative python interpreter for the coreos hosts. This is done by adding a `group_vars/all.yml` file to your project with the following content.
-
+Unlike a typical role, you need to configure Ansible to use an alternative python interpreter for coreos hosts. This can be done by adding a `coreos` group to your inventory file and setting the group's vars to use the new python interpreter. This way, you can use ansible to manage CoreOS and non-CoreOS hosts. Simply put every host that has CoreOS into the `coreos` inventory group and it will automatically use the specified python interpreter.
 ```
-# group_vars/all.yml
+[coreos]
+host-01
+host-02
+
+[coreos:vars]
 ansible_python_interpreter: "/home/core/bin/python"
 ```
 
-This will educate ansible to use the python interpreter at `$HOME/bin/python` which will be created by the coreos-bootstrap role.
+This will configure ansible to use the python interpreter at `$HOME/bin/python` which will be created by the coreos-bootstrap role.
 
-## example playbook
+## Example Playbook
 
-Now you can simply add the following to your playbook file and include it in your `site.yml` so that it runs on all hosts.
+Now you can simply add the following to your playbook file and include it in your `site.yml` so that it runs on all hosts in the coreos group.
 
 ```yaml
-- hosts: all
+- hosts: coreos
   gather_facts: False
   roles:
     - defunctzombie.coreos-bootstrap
