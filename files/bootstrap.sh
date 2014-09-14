@@ -9,19 +9,14 @@ fi
 mkdir -p $HOME/bin
 
 cat > $HOME/.toolboxrc <<EOF
-TOOLBOX_DOCKER_IMAGE=ubuntu
-TOOLBOX_DOCKER_TAG=14.04
+TOOLBOX_DOCKER_IMAGE=defunctzombie/toolbox
+TOOLBOX_DOCKER_TAG=v1
 EOF
 
 cat > $HOME/bin/python <<EOF
 #!/bin/bash
-toolbox --bind=/home:/home --bind=/run/docker.sock:/run/docker.sock python "\$@"
+toolbox --bind=/home:/home --bind=/run/docker.sock:/run/docker.sock \$(basename \$0) "\$@"
 EOF
 
 chmod +x $HOME/bin/python
-
-toolbox apt-get update
-toolbox apt-get install -y docker.io python python-pip
-toolbox pip install docker-py
-
 touch $HOME/.bootstrapped
