@@ -19,4 +19,6 @@ toolbox --bind=/home:/home --bind=/run/docker.sock:/run/docker.sock \$(basename 
 EOF
 
 chmod +x $HOME/bin/python
+$HOME/bin/python --version
+
 touch $HOME/.bootstrapped
