@@ -3,6 +3,22 @@
   register: need_bootstrap
   ignore_errors: True
 
-- name: perform bootstrap
+- name: Run bootstrap.sh
   script: bootstrap.sh
   when: need_bootstrap | failed
+
+- name: Check if we need to install pip
+  shell: python -m pip --version
+  register: need_pip
+  ignore_errors: True
+
+- name: Copy get-pip.py
+  copy: src=get-pip.py dest=/home/core/get-pip.py
+  when: need_pip | failed
+
+- name: Install pip
+  shell: "{{ansible_python_interpreter}} get-pip.py"
+  when: need_pip | failed
+
+- name: Install pip launcher
+  copy: src=runner dest=/home/core/bin/pip mode=0755
