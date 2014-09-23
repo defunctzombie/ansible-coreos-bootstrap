@@ -8,7 +8,7 @@
   when: need_bootstrap | failed
 
 - name: Check if we need to install pip
-  shell: python -m pip --version
+  shell: "{{ansible_python_interpreter}} -m pip --version"
   register: need_pip
   ignore_errors: True
 
