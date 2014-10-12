@@ -11,6 +11,7 @@
   shell: "{{ansible_python_interpreter}} -m pip --version"
   register: need_pip
   ignore_errors: True
+  changed_when: false
 
 - name: Copy get-pip.py
   copy: src=get-pip.py dest=/home/core/get-pip.py
