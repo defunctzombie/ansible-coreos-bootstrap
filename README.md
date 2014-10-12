@@ -17,6 +17,7 @@ host-01
 host-02
 
 [coreos:vars]
+ansible_ssh_user=core
 ansible_python_interpreter="PATH=/home/core/bin:$PATH python"
 ```
 
