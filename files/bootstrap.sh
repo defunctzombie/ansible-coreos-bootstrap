@@ -10,7 +10,7 @@ PYPY_VERSION=2.4.0
 
 wget https://bitbucket.org/pypy/pypy/downloads/pypy-$PYPY_VERSION-linux64.tar.bz2
 tar -xf pypy-$PYPY_VERSION-linux64.tar.bz2
-ln -s pypy-$PYPY_VERSION-linux64 pypy
+mv pypy-$PYPY_VERSION-linux64 pypy
 
 ## library fixup
 mkdir pypy/lib
@@ -27,3 +27,5 @@ chmod +x $HOME/bin/python
 $HOME/bin/python --version
 
 touch $HOME/.bootstrapped
+
+rm -f pypy-$PYPY_VERSION-linux64.tar.bz2

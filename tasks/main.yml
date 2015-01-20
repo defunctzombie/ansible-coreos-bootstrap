@@ -1,4 +1,4 @@
-- name: check if bootstrap is needed
+- name: Check if bootstrap is needed
   raw: stat $HOME/.bootstrapped
   register: need_bootstrap
   ignore_errors: True
@@ -20,6 +20,10 @@
 - name: Install pip
   shell: "{{ansible_python_interpreter}} get-pip.py"
   when: need_pip | failed
+
+- name: Remove get-pip.py
+  command: rm -f /home/core/get-pip.py
+  ignore_errors: True
 
 - name: Install pip launcher
   copy: src=runner dest=/home/core/bin/pip mode=0755
