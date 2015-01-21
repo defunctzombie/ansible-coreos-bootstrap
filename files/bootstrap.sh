@@ -2,6 +2,8 @@
 
 set -e
 
+cd
+
 if [-e $HOME/.bootstrapped]; then
   exit 0
 fi
