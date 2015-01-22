@@ -14,16 +14,16 @@
   changed_when: false
 
 - name: Copy get-pip.py
-  copy: src=get-pip.py dest=/home/core/get-pip.py
+  copy: src=get-pip.py dest=~/get-pip.py
   when: need_pip | failed
 
 - name: Install pip
-  shell: "{{ansible_python_interpreter}} get-pip.py"
+  shell: "{{ansible_python_interpreter}} ~/get-pip.py"
   when: need_pip | failed
 
 - name: Remove get-pip.py
-  command: rm -f /home/core/get-pip.py
+  command: rm -f ~/get-pip.py
   ignore_errors: True
 
 - name: Install pip launcher
-  copy: src=runner dest=/home/core/bin/pip mode=0755
+  copy: src=runner dest=~/bin/pip mode=0755
