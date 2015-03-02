@@ -12,6 +12,7 @@
   register: need_pip
   ignore_errors: True
   changed_when: false
+  when: need_bootstrap | failed
 
 - name: Copy get-pip.py
   copy: src=get-pip.py dest=~/get-pip.py
@@ -23,7 +24,8 @@
 
 - name: Remove get-pip.py
   command: rm -f ~/get-pip.py
-  ignore_errors: True
+  when: need_pip | failed
 
 - name: Install pip launcher
   copy: src=runner dest=~/bin/pip mode=0755
+  when: need_pip | failed
