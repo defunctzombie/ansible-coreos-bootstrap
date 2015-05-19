@@ -23,7 +23,7 @@
   when: need_pip | failed
 
 - name: Remove get-pip.py
-  command: rm -f ~/get-pip.py
+  file: path=~/get-pip.py state=absent
   when: need_pip | failed
 
 - name: Install pip launcher
