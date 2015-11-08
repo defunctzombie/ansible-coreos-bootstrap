@@ -10,7 +10,13 @@ fi
 
 PYPY_VERSION=2.4.0
 
-wget -O - https://bitbucket.org/pypy/pypy/downloads/pypy-$PYPY_VERSION-linux64.tar.bz2 |tar -xjf -
+if [[ -e $HOME/pypy-$PYPY_VERSION-linux64.tar.bz2 ]]; then
+  tar -xjf $HOME/pypy-$PYPY_VERSION-linux64.tar.bz2
+  rm -rf $HOME/pypy-$PYPY_VERSION-linux64.tar.bz2
+else
+  wget -O - https://bitbucket.org/pypy/pypy/downloads/pypy-$PYPY_VERSION-linux64.tar.bz2 |tar -xjf -
+fi
+
 mv -n pypy-$PYPY_VERSION-linux64 pypy
 
 ## library fixup
