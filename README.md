@@ -18,7 +18,7 @@ host-02
 
 [coreos:vars]
 ansible_ssh_user=core
-ansible_python_interpreter="PATH=/home/core/bin:$PATH python"
+ansible_python_interpreter=/home/core/bin/python
 ```
 
 This will configure ansible to use the python interpreter at `/home/core/bin/python` which will be created by the coreos-bootstrap role.
